@@ -1,0 +1,76 @@
+Control{
+	condition = fixed_charge
+	cpumax = 1 hour
+	max_iteration = 60000
+}
+
+accuracy{
+	cutoff_wf =   25.00  rydberg
+	cutoff_cd =  225.00  rydberg
+	num_bands =  10
+	ksampling{
+		method = mesh
+                mesh{ nx = 10, ny = 10, nz = 10 }
+	}
+        smearing{
+                method = tetrahedral
+        }
+
+	ek_convergence{
+		num_max_iteration = 300
+		sw_eval_eig_diff = on
+		delta_eigenvalue = 1.e-5 eV
+		succession   = 2
+                num_extra_bands = 10
+	}
+
+	initial_wavefunctions = matrix_diagon
+            matrix_diagon{
+               cutoff_wf =  12.25  rydberg
+            }
+}
+
+structure{
+	magnetic_state = ferro
+        unit_cell{
+                 #units angstrom
+                 a_vector = 1.419043  1.419043 -1.419043
+                 b_vector = -1.419043  1.419043 1.419043
+                 c_vector = 1.419043  -1.419043 1.419043
+        }
+	atom_list{
+	     atoms{
+		#tag  rx       ry         rz      element
+		     0.000     0.000     0.000          Fe
+	     }
+	}
+	element_list{ #tag element  atomicnumber     zeta  dev
+			         Fe            26    0.275  1.5 }
+
+}
+
+wavefunction_solver{
+	solvers{
+            #tag   sol    till_n
+                  mddavidson +2
+                  rmm3     -1
+       	}
+
+	rmm{
+	     edelta_change_to_rmm = 1.0e-3
+	}
+}
+
+
+Postprocessing{
+	dos{
+                method = tetrahedral
+		sw_dos = ON
+		deltaE = 1.e-4 hartree
+		nwd_window_width    = 10
+	}
+}
+
+printlevel{
+	base = 1
+}
