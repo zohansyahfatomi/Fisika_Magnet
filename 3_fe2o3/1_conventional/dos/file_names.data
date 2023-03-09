@@ -1,0 +1,8 @@
+&fnames
+ F_INP    = './nfinp.data'
+ F_POT(1) = '../pp/nfinp.pp'
+ F_POT(1) = '../pp/nfinp.pp'
+ F_ENERG  = './nfenergy.data'
+ F_CHGT   = '../scf/nfcharge.data'
+ F_ZAJ    = './zaj.data'
+/
