@@ -1,0 +1,88 @@
+Control{
+	condition = fixed_charge
+	cpumax = 23 hour
+	max_iteration = 60000
+}
+
+accuracy{
+	cutoff_wf =   25.00  rydberg
+	cutoff_cd =  225.00  rydberg
+	num_bands =  10
+	ksampling{
+		method = mesh
+                mesh{ nx = 1, ny = 1, nz = 1 }
+	}
+        smearing{
+                method = tetrahedral
+        }
+
+	ek_convergence{
+		num_max_iteration = 300
+		sw_eval_eig_diff = on
+		delta_eigenvalue = 1.e-5 eV
+		succession   = 2
+                num_extra_bands = 10
+	}
+
+	initial_wavefunctions = matrix_diagon
+            matrix_diagon{
+               cutoff_wf =  12.25  rydberg
+            }
+}
+
+structure{
+    atom_list{
+        atoms{
+            #default mobile = 1
+            #tag element rx ry rz mobile
+             Fe 0.854175 0.854175 0.854175 1
+             Fe 0.145825 0.145825 0.145825 1
+             Fe 0.645825 0.645825 0.645825 1
+             Fe 0.354175 0.354175 0.354175 1
+             O 0.4451225 0.0548775 0.75 1
+             O 0.5548775 0.9451225 0.25 1
+             O 0.0548775 0.75 0.4451225 1
+             O 0.9451225 0.25 0.5548775 1
+             O 0.75 0.4451225 0.0548775 1
+             O 0.25 0.5548775 0.9451225 1
+        }
+        coordinate_system = internal 
+    }
+    element_list{
+        #tag element atomicnumber mass zeta deviation
+         Fe 26 101802.230 0.0 1.83
+         O 8 29164.9435 0.0 1.83
+    }
+    unit_cell{
+        #units angstrom
+        a_vector = 5.49503193 0.00 0.00 
+        b_vector = 3.1238431159 4.5207278285 0.00 
+        c_vector = 3.1238431159 1.6385020586 4.2133467817 
+    }
+}
+
+wavefunction_solver{
+	solvers{
+            #tag   sol    till_n
+                  mddavidson +2
+                  rmm3     -1
+       	}
+
+	rmm{
+	     edelta_change_to_rmm = 1.0e-3
+	}
+}
+
+
+Postprocessing{
+	dos{
+                method = tetrahedral
+		sw_dos = ON
+		deltaE = 1.e-4 hartree
+		nwd_window_width    = 10
+	}
+}
+
+printlevel{
+	base = 1
+}

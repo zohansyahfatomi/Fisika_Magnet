@@ -1,0 +1,66 @@
+Control{
+    cpumax = 10 hour
+    condition = fixed_charge 
+}
+accuracy{
+    cutoff_wf = 25 rydberg
+    cutoff_cd = 225.00 rydberg
+    ksampling{
+        method = file 
+    }
+    smearing{
+        method = tetrahedral 
+    }
+    scf_convergence{
+        delta_total_energy = 1.e-10 hartree
+    }
+    initial_charge_density = atomic_charge_density 
+    initial_wavefunctions = matrix_diagon 
+    ek_convergence{
+        num_max_iteration = 500 
+        sw_eval_eig_diff = on 
+        delta_eigenvalue = 1.e-5 
+        succession = 2 
+        num_extra_bands = 2 
+    }
+}
+structure{
+    unit_cell{
+        #units angstrom
+        a_vector = 5.49503193 0.00 0.00 
+        b_vector = 3.1238431159 4.5207278285 0.00 
+        c_vector = 3.1238431159 1.6385020586 4.2133467817 
+    }
+    atom_list{
+        atoms{
+            #tag element rx ry rz
+             Fe 0.854175 0.8541749999999999 0.854175
+             Fe 0.145825 0.145825 0.145825
+             Fe 0.645825 0.645825 0.645825
+             Fe 0.35417499999999996 0.354175 0.354175
+             O 0.44512250000000003 0.054877500000000023 0.75
+             O 0.5548775 0.9451225 0.25
+             O 0.054877499999999906 0.75 0.4451225
+             O 0.9451225000000002 0.25000000000000006 0.5548775
+             O 0.7500000000000001 0.4451225 0.0548775
+             O 0.25000000000000006 0.5548775 0.9451225
+        }
+        coordinate_system = internal 
+    }
+    element_list{
+        #tag element atomicnumber mass zeta deviation
+         Fe 26 * 0.275 *
+         O 8 29164.9435 0.0 1.83
+    }
+}
+Postprocessing{
+    dos{
+        sw_dos = off 
+        method = tetrahedral 
+        deltaE = 1.e-4 hartree
+        nwd_window_width = 10 
+    }
+}
+printlevel{
+    base = 1 
+}

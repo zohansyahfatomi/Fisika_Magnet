@@ -1,0 +1,69 @@
+structure{
+    atom_list{
+        atoms{
+            #tag element rx ry rz 
+             Fe 0.854175 0.854175 0.854175 
+             Fe 0.145825 0.145825 0.145825 
+             Fe 0.645825 0.645825 0.645825 
+             Fe 0.354175 0.354175 0.354175 
+             O 0.4451225 0.0548775 0.75 
+             O 0.5548775 0.9451225 0.25 
+             O 0.0548775 0.75 0.4451225 
+             O 0.9451225 0.25 0.5548775 
+             O 0.75 0.4451225 0.0548775 
+             O 0.25 0.5548775 0.9451225 
+        } 
+    }
+    element_list{
+        #tag element atomicnumber mass zeta deviation
+         Fe 26 101802.230 0.0 1.83
+         O 8 29164.9435 0.0 1.83
+    }
+    unit_cell{
+        #units angstrom
+        a_vector = 5.49503193 0.00 0.00 
+        b_vector = 3.1238431159 4.5207278285 0.00 
+        c_vector = 3.1238431159 1.6385020586 4.2133467817 
+    }
+}
+accuracy{
+    cutoff_wf = 25 Rydberg
+    cutoff_cd = 225 Rydberg
+    ksampling{
+        mesh{
+            nx = 5 
+            ny = 5 
+            nz = 5 
+        }
+        method = mesh 
+    }
+    smearing{
+        method = tetrahedral 
+    }
+    scf_convergence{
+        delta_total_energy = 1.e-8 hartree
+        succession = 2 
+    }
+    force_convergence{
+        max_force = 0.1e-3 
+    }
+    initial_wavefunctions = atomic_orbitals 
+    initial_charge_density = atomic_charge_density 
+}
+control{
+    condition = -1 
+    cpumax = 23 hour
+}
+printoutlevel{
+    base = 1 
+}
+postprocessing{
+    dos{
+        sw_dos = on 
+        method = tetrahedral 
+    }
+    charge{
+        filetype = cube 
+        sw_charge_rspace = on 
+    }
+}
